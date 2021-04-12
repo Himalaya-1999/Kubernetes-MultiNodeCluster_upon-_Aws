@@ -1,0 +1,17 @@
+- hosts: localhost
+  name: "Launching 3 instances upon AWS Cloud"
+  vars_files:
+          - password.yml
+  tasks:
+   - ec2:    
+       region: ap-south-1
+       image: ami-0bcf5425cdc1d8a85
+       count: 3
+       assign_public_ip: yes
+       instance_type: "t2.micro"
+       vpc_subnet_id: " subnet-8cf9c5e4"
+       group_id: "sg-050cbcf50953acb0b"
+       key_name: "Ansible"
+       state: present
+       aws_access_key: "{{ access_key }}"
+       aws_secret_key: "{{ secret_key }}"
